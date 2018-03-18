@@ -4,30 +4,49 @@
 	<meta charset="UTF-8">
 	   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>NgTodos</title>
-	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.9/angular.js"></script>-->
-	<script src="/node_modules/angular/angular.js"></script>
-	<link rel="stylesheet" href="/public/style.css">
+	<link rel="stylesheet" href="dist/style.css">
 </head>
 <body>
 	<div id="mainContainer" ng-app="toDoApp">
 		<div ng-controller="toDoController">
-
-            <h3>Active ({{ tasks.length }})</h3>
-            <span ng-if="tasks.length === 0">You have no active tasks!</span>
-            <ul ng-repeat="task in tasks">
-                <li>
-                    <input type="checkbox" ng-click="removeTask(task)" /> {{ task }}
-                </li>
-            </ul>
-
-            <h2>Add a Task</h2>
-            <form>
-                <input type="text" placeholder="Description" ng-model="newTaskName" />
-                <input type="button" value="Add" ng-click="addTask()" />
-            </form>
-        </div>
+			<h3>Todos count: {{ todos.length }}</h3>
+			<span ng-if="todos.length === 0">You have no active todos!</span>
+			<span ng-if="todos.length > 0">
+				Hey! You have {{ remainingTasksCount }} todos left. {{ completedTasksCount }} has already been complete.
+			</span>
+			<h2>Filter by days old:</h2>
+			<input placeholder="Enter days old" ng-model="daysOldNumber" />
+			<ul ng-repeat="todo in todos | filter:statusFilter | filter:daysOldFilter">
+				<li>
+					<label>
+						<input type="checkbox" ng-checked="todo.completed" ng-click="toggleTodo(todo.id)" /> 
+						<span ng-class="todo.completed ? 'completedTask' : '' " ng-dblclick="activateEditTodo(todo.id)"> {{ todo.title }} </span>
+					</label>
+					 : {{ todo.date | date:'medium' }}
+					<button ng-click="removeTodo(todo.id)">Delete Todo</button>
+				</li>
+			</ul>
+			<a href="#!todo/add">Add Todo</a>
+			<div ng-view></div>
+			<h2>Show Filters</h2>
+			<div>
+				<button ng-click="changeShowFilter('completed')">
+					Show Completed
+				</button>
+				<button ng-click="changeShowFilter('active')">
+            	    Show Active
+            	</button>
+            	<button ng-click="changeShowFilter('')">
+            	    Show All
+            	</button>				
+			</div>
+		</div>
 	</div>
 
-	<script src="/public/bundle.js"></script>
+	<script src="node_modules/angular/angular.js"></script>
+	<script src="node_modules/angular-messages/angular-messages.js"></script>
+	<script src="node_modules/angular-route/angular-route.js"></script>
+	<script src="src/app/index.js"></script>
+	<!--<script src="dist/bundle.js"></script>-->
 </body>
 </html>

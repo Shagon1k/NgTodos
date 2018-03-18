@@ -1,0 +1,20 @@
+/*@import './reset.scss';*/
+html, body {
+  height: 100%; }
+
+body {
+  background: #d3afaf;
+  font-size: 16px;
+  font-family: Arial; }
+
+.completedTask {
+  text-decoration: line-through; }
+
+.error-msgs {
+  list-style: none;
+  padding: 0; }
+  .error-msgs li {
+    font-weight: bold;
+    color: #bc1a1a; }
+
+/*# sourceMappingURL=style.css.map*/

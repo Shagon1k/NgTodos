@@ -1,0 +1,16 @@
+<h2 ng-if="!changingTodoId">Add a Task</h2>
+<h2 ng-if="changingTodoId">Edit Task</h2>
+<form name="todoForm">
+	<input name="todoInput"
+		type="text" 
+		placeholder="Description" 
+		required 
+		add-validation
+		ng-model="newTodoTitle" />
+	<input ng-if="!changingTodoId" type="button" ng-disabled="todoForm.todoInput.$invalid" value="Add" ng-click="addTodo()" />
+	<input ng-if="changingTodoId" type="button" ng-disabled="todoForm.todoInput.$invalid" value="Edit" ng-click="editTodo()" />
+	<ul class="error-msgs" ng-messages="todoForm.todoInput.$error">
+		<li ng-message="maxLengthValidator">Error! Max length is 10 symbols!</li>
+		<li ng-message="requiredValidator">Error! Todo title is required!</li>
+	</ul>
+</form>
