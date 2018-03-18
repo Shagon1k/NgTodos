@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>NgTodos</title>
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.9/angular.js"></script>-->
+	<script src="/node_modules/angular/angular.js"></script>
+	<link rel="stylesheet" href="/public/style.css">
+</head>
+<body>
+	<div id="mainContainer" ng-app="toDoApp">
+		<div ng-controller="toDoController">
+
+            <h3>Active ({{ tasks.length }})</h3>
+            <span ng-if="tasks.length === 0">You have no active tasks!</span>
+            <ul ng-repeat="task in tasks">
+                <li>
+                    <input type="checkbox" ng-click="removeTask(task)" /> {{ task }}
+                </li>
+            </ul>
+
+            <h2>Add a Task</h2>
+            <form>
+                <input type="text" placeholder="Description" ng-model="newTaskName" />
+                <input type="button" value="Add" ng-click="addTask()" />
+            </form>
+        </div>
+	</div>
+
+	<script src="/public/bundle.js"></script>
+</body>
+</html>
