@@ -17,4 +17,13 @@ body {
     font-weight: bold;
     color: #bc1a1a; }
 
+.filterByDaysOldContainer {
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 10px; }
+
+.sortTypeButtonsContainer {
+  display: inline-block;
+  margin-bottom: 10px; }
+
 /*# sourceMappingURL=style.css.map*/

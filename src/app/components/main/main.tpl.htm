@@ -1,0 +1,32 @@
+<h2>Sort or filter your todos:</h2>
+<div class="filterByDaysOldContainer">
+	<span>Filter by days old:</span>
+	<input placeholder="Enter days old" ng-model="daysOldNumber" />
+</div>
+<div class="sortTypeButtonsContainer">
+	<button ng-click="changeTodoSortType('title')">Sort by title</button>
+	<button ng-click="changeTodoSortType('date')">Sort by date</button>
+	<button ng-click="changeTodoSortType('')">Clear sorting</button>
+</div>
+<ul ng-repeat="todo in todos | orderBy:sortType | filter:statusFilter | filter:daysOldFilter">
+	<li>
+		<label>
+			<input type="checkbox" ng-checked="todo.completed" ng-click="toggleTodo(todo.id)" /> 
+			<span ng-class="todo.completed ? 'completedTask' : '' " ng-dblclick="activateEditTodo(todo.id)"> {{ todo.title }} </span>
+		</label>
+		 : {{ todo.date | date:'medium' }}
+		<button ng-click="removeTodo(todo.id)">Delete Todo</button>
+	</li>
+</ul>
+<h2>Show Filters</h2>
+<div>
+	<button ng-click="changeShowFilter('completed')">
+		Show Completed
+	</button>
+	<button ng-click="changeShowFilter('active')">
+	    Show Active
+	</button>
+	<button ng-click="changeShowFilter('')">
+	    Show All
+	</button>				
+</div>

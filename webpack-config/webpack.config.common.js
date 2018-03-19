@@ -1,5 +1,6 @@
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 
  module.exports = {
 	entry: ["./src/app"],
@@ -29,6 +30,10 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 		]
 	},
 	plugins: [
+		new ngAnnotatePlugin({
+			add: true,
+			// other ng-annotate options here 
+		}),
 		new ExtractTextPlugin("style.css")
 	]
  }
