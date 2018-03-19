@@ -5,7 +5,7 @@ import addValidationDir from './directives/addValidation.js'
 
 var app = angular.module('toDoApp', ['ngRoute', 'ngMessages']);
 
-app.config(function($routeProvider) {
+app.config(function($routeProvider, $locationProvider) {
 	$routeProvider
 	.when('/', {
 		templateUrl: './src/app/components/main/main.tpl.htm',
@@ -20,6 +20,8 @@ app.config(function($routeProvider) {
 		controller: 'addEditController'
 	})
 	.otherwise({redirectTo: '/'})
+
+	$locationProvider.html5Mode(true);
 });
 
 app.directive('addValidation', addValidationDir);

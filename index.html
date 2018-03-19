@@ -5,6 +5,7 @@
 	   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>NgTodos</title>
 	<link rel="stylesheet" href="dist/style.css">
+	<base href="/" />
 </head>
 <body>
 	<div id="mainContainer" ng-app="toDoApp">
@@ -14,7 +15,7 @@
 			<span ng-if="todos.length > 0">
 				Hey! You have {{ remainingTasksCount }} todos left. {{ completedTasksCount }} has already been complete.
 			</span>
-			<a href="#!todo/add">Add Todo</a>
+			<a href="/todo/add">Add Todo</a>
 
 			<div ng-view></div>
 		</div>
